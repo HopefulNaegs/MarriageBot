@@ -217,15 +217,7 @@ class Parentage(Cog):
             await ctx.send(text_processor.target_is_family(instigator, target))
             return
 
-        # Manage children
-        is_patreon = await is_patreon_predicate(ctx.bot, instigator, 1)
-        children_amount = 30 if is_patreon else 5
-        if len(instigator_tree._children) >= children_amount:
-            await ctx.send({
-                False: f"You can't have more than 5 children unless you're a Patreon donator (`{ctx.prefix}donate`)",
-                True: f"You don't need more than 30 children. Please enter the Chill Zone:tm:.",
-            }.get(is_patreon))
-            return
+       
 
         # No parent, send request
         await ctx.send(text_processor.valid_target(instigator, target))
